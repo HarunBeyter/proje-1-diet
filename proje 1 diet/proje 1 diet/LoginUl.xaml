@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="proje_1_diet.LoginUl"
+             BackgroundColor="	#B0E0E6" 
+             Title="PasswordScreen">
+    <ContentPage.Content>
+        <StackLayout Padding="40" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+
+
+            <Image Source="analogoo.png" WidthRequest="180" HeightRequest="180" ></Image>
+            
+            <Entry x:Name="txtmail" Placeholder="Username" TextColor="Black" PlaceholderColor="gray"></Entry>
+            
+            <StackLayout Orientation="Horizontal">
+                <Entry x:Name="txtPassword" HorizontalOptions="FillAndExpand" IsPassword="True" Placeholder="Password"  TextColor="black" PlaceholderColor="gray"></Entry>
+                <ImageButton x:Name="eye" WidthRequest="25" Source="hidden.png" Clicked="eye_Clicked" BackgroundColor="Transparent"></ImageButton>
+            </StackLayout>
+            <Button
+                VerticalOptions="Center"
+                Text="logın"
+                TextColor="ForestGreen"
+                BackgroundColor="Transparent"
+                BorderColor="ForestGreen"
+                BorderWidth="1.5"
+                CornerRadius="50"
+                Clicked="Button_Clicked"
+                ></Button>
+
+            <Label HorizontalOptions="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Don't have an account?" TextColor="Gray"/>
+                        <Span Text="Register" TextColor="Gray" FontAttributes="bold" TextDecorations="Underline"/>
+                    </FormattedString>
+                </Label.FormattedText>
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                </Label.GestureRecognizers>
+            </Label>
+            <Label HorizontalOptions="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Forget password?" TextColor="Gray" FontAttributes="bold" TextDecorations="Underline"/>
+                    </FormattedString>
+                </Label.FormattedText>
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_ForgetPassword"/>
+                </Label.GestureRecognizers>
+            </Label>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

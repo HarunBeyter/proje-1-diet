@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="proje_1_diet.HomePageFlyout"
+             xmlns:local="clr-namespace:proje_1_diet"
+             xmlns:CI="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             Title="FlyoutMenu">
+    <StackLayout BackgroundColor="#455a6a">
+        <Grid HeightRequest="200"
+              BackgroundColor="LightBlue">
+            <Image Aspect="AspectFill" Source="weeklybackground.png"/>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" HeightRequest="200">
+                <Frame CornerRadius="200" Margin="5,15,5,5" BackgroundColor="Transparent">
+                    <CI:CircleImage WidthRequest="100" HeightRequest="100" Aspect="AspectFill" Source="harun.png" BackgroundColor="Transparent" BorderColor="Black"/>
+                </Frame>
+                <StackLayout Orientation="Vertical">
+                    <Label Text="Panda Profile" HorizontalTextAlignment="Start" FontSize="Large" Margin="2,0,0,0" HorizontalOptions="Start" VerticalOptions="EndAndExpand" TextColor="Black"/>
+                    <Label Text="Xamarin Forms" HorizontalTextAlignment="Start"
+                               FontSize="Small" Margin="2,0,0,0" HorizontalOptions="Start" VerticalOptions="StartAndExpand" TextColor="#16161d" />
+                </StackLayout>
+            </StackLayout>
+        </Grid>
+        <ListView x:Name="FlyList" x:FieldModifier="public" Margin="5,20,5,5" >
+            <ListView.ItemsSource>
+                <x:Array Type="{x:Type local:HomePageNavigationClass}">
+                    <local:HomePageNavigationClass Title="Profile" Icon="profile.png" TargetPage="{x:Type local:profilePage}"/>
+                    <local:HomePageNavigationClass Title="Add Meal" Icon="yemek.png" TargetPage="{x:Type local:HomePage}"/>
+                    <local:HomePageNavigationClass Title="Add Exercise" Icon="kedi.png" TargetPage="{x:Type local:LoginUl}"/>
+                    <local:HomePageNavigationClass Title="Water" Icon="waterbottle.png" TargetPage="{x:Type local:waterPage}"/>
+                    <local:HomePageNavigationClass Title="Weekly Information" Icon="days.png" TargetPage="{x:Type local:weeklydetails}"/>
+                    <local:HomePageNavigationClass Title="LogOut" Icon="exit.png" TargetPage="{x:Type local:LoginUl}"/>
+                </x:Array>
+            </ListView.ItemsSource>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="33"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" HeightRequest="100" Source="{Binding Icon}"/>
+                            <Label Grid.Column="1" FontSize="20" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"  Text="{Binding Title}"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

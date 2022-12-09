@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="proje_1_diet.waterPage">
+    <ContentPage.Content>
+        <Grid RowDefinitions="Auto,Auto,*" BackgroundColor="#f3f3f3" RowSpacing="20">
+            <Grid HeightRequest="400" Margin="0,0,0,0"
+              BackgroundColor="Transparent">
+                <Frame x:Name="sumatarası" HeightRequest="375" CornerRadius="20" Margin="120,320,120,65"
+              BackgroundColor="LightBlue"></Frame>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
+                    <Frame  Margin="20,10,5,0" BackgroundColor="Transparent">
+                        <Image   Aspect="AspectFill"  Source="waterglass.png" WidthRequest="350" BackgroundColor="Transparent" />
+                    </Frame>
+                </StackLayout>
+            </Grid>
+            <Grid Grid.Row="1" BackgroundColor="White" Padding="10" Margin="5,10,5,0">
+                <Label FontSize="50" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Center">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding SelectedAmount, StringFormat='{0:N0}'}" TextColor="Black"/>
+                            <Span Text="ml" TextColor="Black"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </Grid>
+            <ScrollView Grid.Row="2" VerticalOptions="Start" Orientation="Horizontal" Margin="30" HorizontalScrollBarVisibility="Never">
+                        <StackLayout Orientation="Horizontal" BindableLayout.ItemsSource="{Binding Budgets}"
+                                     VerticalOptions="Start" HeightRequest="100">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid HorizontalOptions="StartAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="ItemTapped"/>
+                                        </Grid.GestureRecognizers>
+                                        <BoxView x:Name="MainBg" CornerRadius="20" BackgroundColor="{Binding Color}" IsVisible="False"/>
+                                        <Grid ColumnDefinitions="Auto,Auto" ColumnSpacing="0" Padding="10">
+                                            <StackLayout x:Name="DetailsView" Grid.Column="1" VerticalOptions="Center" Padding="20,0"
+                                                         TranslationX="-40" IsVisible="False">
+                                                <Label Text="{Binding Name}" FontSize="16" TextColor="White" FontAttributes="Bold"/>
+                                                <Label Text="{Binding Amount, StringFormat='{0:N0}ml'}" FontSize="14" TextColor="White"
+                                                       FontAttributes="Bold"/>
+                                            </StackLayout>
+                                            <BoxView CornerRadius="20" HeightRequest="70" WidthRequest="70"
+                                                     BackgroundColor="Black" Opacity="0.4"/>
+                                            <Image Source="{Binding Image}" HeightRequest="30" WidthRequest="30"
+                                                   HorizontalOptions="Center" VerticalOptions="Center"/>
+                                        </Grid>
+                                    </Grid>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout> 
+            </ScrollView>
+
+            <Button Grid.Row="2"
+                    Margin="10,120,10,0"
+                VerticalOptions="Center"
+                Text="save"
+                TextColor="ForestGreen"
+                BackgroundColor="Transparent"
+                BorderColor="ForestGreen"
+                BorderWidth="1.5"
+                CornerRadius="50"
+                Clicked="Button_ClickedSave"
+                ></Button>
+
+
+        </Grid>
+
+
+    </ContentPage.Content>
+</ContentPage>

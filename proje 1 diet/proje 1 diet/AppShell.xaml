@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms" 
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:local="clr-namespace:proje_1_diet.Views"
+       Title="proje_1_diet"
+       xmlns:views="clr"
+       x:Class="proje_1_diet.AppShell">
+
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Color x:Key="ThemeColor">#EF3D55</Color>
+            <Color x:Key="GrayColor">gray</Color>
+            <Color x:Key="BgColor">#f0f0f0</Color>
+            
+        </ResourceDictionary>
+    </Shell.Resources>
+
+    <FlyoutItem>
+        <Tab Title="dashboard" Icon="yemek.png">
+            <ShellContent />
+        </Tab>
+       
+    </FlyoutItem>
+</Shell>

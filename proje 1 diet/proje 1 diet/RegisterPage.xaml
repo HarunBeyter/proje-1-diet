@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="proje_1_diet.RegisterPage">
+    <ContentPage.Content>
+        <StackLayout Padding="20">
+            <Label Text="Person Entry" VerticalOptions="Center" HorizontalOptions="Center" FontSize="Large"/>
+            <Entry x:Name="TxtName" Placeholder="Enter your name"/>
+            <Entry x:Name="TxtSurName" Placeholder="Enter your surname"/>
+            <Entry x:Name="TxtMail" Placeholder="Enter your mail"/>
+            <Entry x:Name="TxtPassword" Placeholder="Enter your password"/>
+            <Entry x:Name="TxtPasswordistrue" Placeholder="Enter your password again"/>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="enter your birth date"/>
+                <DatePicker x:Name="TxtBirthTime" />
+            </StackLayout>
+            <Button Text=" save" x:Name="ButtonSave" CornerRadius="20" Clicked="ButtonSave_Clicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
