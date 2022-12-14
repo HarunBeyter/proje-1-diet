@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -19,6 +20,7 @@ namespace proje_1_diet
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class waterPage : ContentPage
     {
+        PersonRepository personRepository=new PersonRepository();
         FirebaseClient firebase = new FirebaseClient("https://dietdatabase-b0f8f-default-rtdb.europe-west1.firebasedatabase.app/");
         static string mail;
         static Person person;
@@ -34,11 +36,16 @@ namespace proje_1_diet
         protected async override void OnAppearing()
         {
             person = await PersonGet();
-            if (person.Water == null) {person.Water = new string[31]; }
+            if (person.Water == null) {person.Water = new string[31];
+                for (int i = 0; i < person.Water.Length; i++)
+                {
+                    person.Water[i] = "0";
+                }
+            }
             waterHistory=person.Water;
             currentTime = DateTime.Now.Day;
-            if (waterHistory[currentTime] == null) { waterHistory[currentTime] = "0"; }
-            amount = Convert.ToDouble(waterHistory[currentTime]);
+            amount = Convert.ToDouble(waterHistory[currentTime-1]);
+            
         }
         
         public async Task<Person> PersonGet()
@@ -46,10 +53,25 @@ namespace proje_1_diet
            return (await firebase.Child(nameof(Person)).OnceAsync<Person>())
                 .Where(x => x.Object.Mail == mail).Select(item => new Person
                 {
+                    Id = item.Object.Id,
                     Name=item.Object.Name,
                     SurName=item.Object.SurName,
                     Mail=item.Object.Mail,
+                    Password = item.Object.Password,
                     BirthTime=item.Object.BirthTime,
+                    Height = item.Object.Height,
+                    Weight = item.Object.Weight,
+                    BloodType = item.Object.BloodType,
+                    Calories = item.Object.Calories,
+                    Protein = item.Object.Protein,
+                    Fat = item.Object.Fat,
+                    Water = item.Object.Water,
+                    Excersize = item.Object.Excersize,
+                    Diet = item.Object.Diet,
+                    Img = item.Object.Img,
+                    ProfileImg = item.Object.ProfileImg,
+                    Job = item.Object.Job,
+                    Adress = item.Object.Adress,
                 }).ToList()[0];
         }
 
@@ -163,7 +185,7 @@ namespace proje_1_diet
 
         }*/
 
-        private void Button_ClickedSave(object sender, EventArgs e)
+        private async void Button_ClickedSave(object sender, EventArgs e)
         {
             /*
             if (whicWater == 1) { drinkWater += 200; }
@@ -198,8 +220,15 @@ namespace proje_1_diet
                     return true;
                 });
 
-                waterHistory[currentTime] = Convert.ToString(deger);
+                waterHistory[currentTime-1] = Convert.ToString(deger);
                 person.Water = waterHistory;
+                bool isUpdate = await personRepository.Update(person);
+                if(!isUpdate)
+                {
+                    await DisplayAlert("hata", "güncellenemedi", "ok");
+                }
+                
+
 
             }
             //

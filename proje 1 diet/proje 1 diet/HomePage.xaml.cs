@@ -15,12 +15,65 @@ using System.Net.Http.Headers;
 using Newtonsoft.Json;
 using proje_1_diet.Models;
 using System.Collections.ObjectModel;
+using Firebase.Database;
 
 namespace proje_1_diet
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HomePage : ContentPage
     {
+        PersonRepository personRepository = new PersonRepository();
+        FirebaseClient firebase = new FirebaseClient("https://dietdatabase-b0f8f-default-rtdb.europe-west1.firebasedatabase.app/");
+        static string mail;
+        static Person person;
+        static int currentTime;
+        static int waterınfo;
+        
+        protected async override void OnAppearing()
+        {
+            mail = Preferences.Get("person", "null");
+            person = await PersonGet();
+            if (person.Calories == null)
+            {
+                person.Calories = new string[31];
+                for (int i = 0; i < person.Calories.Length; i++)
+                {
+                    person.Calories[i] = "0";
+                }
+            }
+            waterınfo = Convert.ToInt32(person.Water[currentTime - 1]);
+            currentTime = DateTime.Now.Day;
+            yemek.Text = person.Calories[currentTime-1];
+        }
+       
+        public async Task<Person> PersonGet()
+        {
+            return (await firebase.Child(nameof(Person)).OnceAsync<Person>())
+                 .Where(x => x.Object.Mail == mail).Select(item => new Person
+                 {
+                     Id = item.Object.Id,
+                     Name = item.Object.Name,
+                     SurName = item.Object.SurName,
+                     Mail = item.Object.Mail,
+                     Password = item.Object.Password,
+                     BirthTime = item.Object.BirthTime,
+                     Height = item.Object.Height,
+                     Weight = item.Object.Weight,
+                     BloodType = item.Object.BloodType,
+                     Calories = item.Object.Calories,
+                     Protein = item.Object.Protein,
+                     Fat = item.Object.Fat,
+                     Water = item.Object.Water,
+                     Excersize = item.Object.Excersize,
+                     Diet = item.Object.Diet,
+                     Img = item.Object.Img,
+                     ProfileImg = item.Object.ProfileImg,
+                     Job = item.Object.Job,
+                     Adress = item.Object.Adress,
+                 }).ToList()[0];
+        }
+
+
         private readonly ChartEntry[] entries = new[]
         {
 
@@ -29,7 +82,7 @@ namespace proje_1_diet
 
                 Color=SKColor.Parse("#77d065")
             },
-              new ChartEntry(128)
+              new ChartEntry((float)(waterınfo))
             {
 
                 Color=SKColor.Parse("#3498db")
@@ -65,9 +118,9 @@ namespace proje_1_diet
         {
             InitializeComponent();
             //önemli api bağlantısı
+           
 
-            
-            
+
             chartViewRadialGauge.Chart = new RadialGaugeChart
             {
                 Entries = entries,
@@ -95,7 +148,6 @@ namespace proje_1_diet
         }
         public static ObservableCollection<Item> myList;
         public static double allCalories;
-        public static string totalcal;
         private async void saveMeal(object sender, EventArgs e)
         {
             sum = Convert.ToInt32(sumInfo.Text);
@@ -115,8 +167,12 @@ namespace proje_1_diet
             {
                 allCalories += Convert.ToDouble(myList[i].calories);
             }
-            totalcal= allCalories.ToString();
-            yemek.Text=totalcal;
+            person.Calories[currentTime-1]= allCalories.ToString();
+            bool isUpdate = await personRepository.Update(person);
+            if (!isUpdate)
+            {
+                await DisplayAlert("hata", "güncellenemedi", "ok");
+            }
 
         }
 

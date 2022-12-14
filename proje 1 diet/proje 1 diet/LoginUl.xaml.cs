@@ -29,18 +29,26 @@ namespace proje_1_diet
         }
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            string email=txtmail.Text;
-            string password = txtPassword.Text;
-            string token = await userRepository.SignIn(email, password);
-            if(!string.IsNullOrEmpty(token))
+            try
             {
-               await Navigation.PushAsync(new MainPage(email));
+                string email = txtmail.Text;
+                string password = txtPassword.Text;
+                string token = await userRepository.SignIn(email, password);
+                if (!string.IsNullOrEmpty(token))
+                {
+                    App.Current.MainPage = new MainPage(email);
+                }
+                else
+                {
+                    await DisplayAlert("warning", "please enter your password or email", "ok");
+
+                }
             }
-            else
+            catch(Exception ex)
             {
-                await DisplayAlert("warning", "password or mail is incorrect", "ok");
-                
+                await DisplayAlert("error",ex.Message, "ok");
             }
+            
         }
 
         private void eye_Clicked(object sender, EventArgs e)

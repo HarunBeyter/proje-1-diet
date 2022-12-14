@@ -38,15 +38,15 @@ namespace proje_1_diet
                 if (string.IsNullOrEmpty(BirthDate.ToString())) { await DisplayAlert("warning", "Please enter your name", "cancel"); return; }
 
 
-                string[] caloei = new string[3] { "a", "a", "a" };
+                
 
                 Person person = new Person();
                 person.Name = name;
+                person.Id = name+surName+password;
                 person.SurName = surName;
                 person.Mail = email;
                 person.Password = password;
                 person.BirthTime = BirthDate;
-                person.Calories = caloei;
                 bool IsSaved = await userRepository.Register(email, password, name);
                 var isSaved = await repository.Save(person);
                 if (isSaved && IsSaved)

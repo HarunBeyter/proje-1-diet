@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace proje_1_diet
 {
@@ -13,12 +14,14 @@ namespace proje_1_diet
 
         public async Task<bool> Save(Person person)
         {
-            var data=await firebaseClient.Child(nameof(Person)).PostAsync(JsonConvert.SerializeObject(person));
-            if(!string.IsNullOrEmpty(data.Key))
-            {
-                return true;
-            }
-            return false;
+            await firebaseClient.Child(nameof(Person)+"/"+person.Id).PutAsync(JsonConvert.SerializeObject(person));
+            return true;
+        }
+
+        public async Task<bool> Update(Person person)
+        {
+            await firebaseClient.Child(nameof(Person) + "/" + person.Id).PutAsync(JsonConvert.SerializeObject(person));
+            return true;
         }
     }
 }

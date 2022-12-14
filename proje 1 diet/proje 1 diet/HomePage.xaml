@@ -40,6 +40,8 @@
                                         <ViewCell>
                                             <StackLayout Orientation="Horizontal">
                                                 <Label Margin="20,0,0,0" Text="{Binding name}" HorizontalOptions="StartAndExpand" FontSize="16" TextColor="Black" />
+                                                <Label Text="{Binding fat_total_g}" Margin="0,0,20,0" FontSize="16" TextColor="Black"/>
+                                                <Label Text="{Binding protein_g}" Margin="0,0,20,0" FontSize="16" TextColor="Black"/>
                                                 <Label Text="{Binding calories}" Margin="0,0,20,0" FontSize="16" TextColor="Black"/>
                                             </StackLayout>
                                         </ViewCell>
