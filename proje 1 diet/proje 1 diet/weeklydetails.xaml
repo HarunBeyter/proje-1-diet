@@ -30,13 +30,12 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <StackLayout  Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
                     <Image Source="yemek.png" HeightRequest="25" HorizontalOptions="Center"/>
                     <StackLayout Spacing="7" HorizontalOptions="CenterAndExpand">
                         <Label Text="{Binding Meal, StringFormat='{0:N0}kj'}" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
-                        <Label Text="Meal" TextColor="#7D7D7D" FontSize="11" HorizontalOptions="Center"/>
+                        <Label Text="Meal" TextColor="Black" FontSize="18" HorizontalOptions="Center"/>
                     </StackLayout>
                     <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer Tapped="GetWeeklyMealInfo"/>
@@ -46,31 +45,21 @@
                     <Image  Source="waterbottle.png" HeightRequest="25" HorizontalOptions="Center"/>
                     <StackLayout Spacing="7" HorizontalOptions="CenterAndExpand">
                         <Label Text="{Binding Water,StringFormat='{0:N0}ml'}" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
-                        <Label Text="Water" TextColor="#7D7D7D" FontSize="11" HorizontalOptions="Center"/>
+                        <Label Text="Water" TextColor="Black" FontSize="18" HorizontalOptions="Center"/>
                     </StackLayout>
                     <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer Tapped="GetWeeklyWaterInfo"/>
                     </StackLayout.GestureRecognizers>
                 </StackLayout>
-                
+
                 <StackLayout Grid.Column="2" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
                     <Image Source="kedi.png" HeightRequest="25" HorizontalOptions="Center"/>
                     <StackLayout Spacing="7" HorizontalOptions="CenterAndExpand">
                         <Label Text="{Binding Exercise, StringFormat= '{0:N0}calorie'}" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
-                        <Label Text="Exercise" TextColor="#7D7D7D" FontSize="11" HorizontalOptions="Center"/>
+                        <Label Text="Exercise" TextColor="Black" FontSize="18" HorizontalOptions="Center"/>
                     </StackLayout>
                     <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer Tapped="GetWeeklyExerciseInfo"/>
-                    </StackLayout.GestureRecognizers>
-                </StackLayout>
-                <StackLayout Grid.Column="3" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
-                    <Image Source="congratulate.png" HeightRequest="25" HorizontalOptions="Center"/>
-                    <StackLayout Spacing="7" HorizontalOptions="CenterAndExpand">
-                        <Label Text="24%" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
-                        <Label Text="Success" TextColor="#7D7D7D" FontSize="11" HorizontalOptions="Center"/>
-                    </StackLayout>
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="GetWeeklySuccessInfo"/>
                     </StackLayout.GestureRecognizers>
                 </StackLayout>
             </Grid>
@@ -91,11 +80,11 @@
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <Label Text="{Binding Date}" TextColor="#757575" FontSize="12" VerticalOptions="Center" Margin="20,0"/>
+                                <Label Text="{Binding Date}" TextColor="#757575" FontSize="16" VerticalOptions="Center" Margin="20,0"/>
                                 <Image Grid.Column="1" Source="{Binding Icon}" WidthRequest="38" HeightRequest="38" HorizontalOptions="Center" VerticalOptions="Center"/>
                                 <StackLayout Grid.Column="2" Orientation="Horizontal" Margin="20,0" HorizontalOptions="End" VerticalOptions="Center">
                                     <Label Text="{Binding Value}" TextColor="Black" FontSize="15" FontAttributes="Bold" VerticalOptions="Center"/>
-                                    <Label Text="bp" TextColor="Black" FontSize="15" VerticalOptions="Center"/>
+                                    <Label  x:Name="simge" Text="" TextColor="Black" FontSize="15" VerticalOptions="Center"/>
                                 </StackLayout>
                             </Grid>
                         </Frame>

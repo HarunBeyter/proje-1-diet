@@ -63,8 +63,9 @@ namespace proje_1_diet
                     Weight = item.Object.Weight,
                     BloodType = item.Object.BloodType,
                     Calories = item.Object.Calories,
-                    Protein = item.Object.Protein,
-                    Fat = item.Object.Fat,
+                    Breakfast = item.Object.Breakfast,
+                    lunch = item.Object.lunch,
+                    dinner = item.Object.dinner,
                     Water = item.Object.Water,
                     Excersize = item.Object.Excersize,
                     Diet = item.Object.Diet,
@@ -72,6 +73,7 @@ namespace proje_1_diet
                     ProfileImg = item.Object.ProfileImg,
                     Job = item.Object.Job,
                     Adress = item.Object.Adress,
+                    timeInfo = item.Object.timeInfo,
                 }).ToList()[0];
         }
 

@@ -40,7 +40,12 @@ namespace proje_1_diet
 
                 
 
+
                 Person person = new Person();
+                person.Calories = Enumerable.Repeat("0",31).ToArray();
+                person.Water = Enumerable.Repeat("0", 31).ToArray();
+                person.Excersize = Enumerable.Repeat("0", 31).ToArray();
+                person.timeInfo = DateTime.Now.Day.ToString();
                 person.Name = name;
                 person.Id = name+surName+password;
                 person.SurName = surName;

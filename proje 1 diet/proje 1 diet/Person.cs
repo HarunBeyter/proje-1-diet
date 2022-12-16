@@ -15,9 +15,11 @@ namespace proje_1_diet
         public string Height { get; set; }
         public string Weight { get; set; }
         public string BloodType { get; set; }
+        public List<meal> Breakfast { get; set; }
+        public List<meal> lunch { get; set; }
+        public List<meal> dinner { get; set; }
+        public List<meal> snack { get; set; }
         public string[] Calories { get; set; }
-        public string[] Protein { get; set; }
-        public string[] Fat { get; set; }
         public string[] Water { get; set; }
         public string[] Excersize { get; set; }
         public string Diet { get; set; }
@@ -25,7 +27,15 @@ namespace proje_1_diet
         public string ProfileImg { get; set; }
         public string Job { get; set; }
         public string Adress { get; set; }
+        public string timeInfo { get; set; }
         
-
     }
+    public class meal
+    {
+        public string name { get; set; }
+        public string fat { get; set; }
+        public string protein { get; set; }
+        public string calories { get; set; }
+    }
+  
 }

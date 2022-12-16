@@ -21,6 +21,7 @@ namespace proje_1_diet
         {
             Preferences.Set("person", person);
             InitializeComponent();
+
             flyout.FlyList.ItemSelected += OnSelectedItem;
         }
 

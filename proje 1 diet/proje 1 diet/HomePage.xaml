@@ -28,21 +28,22 @@
                 <Frame HasShadow="True" CornerRadius="10" Margin="20,20,20,0" Padding="0" HeightRequest="150" VerticalOptions="Start" BackgroundColor="#e0e0e0">
                     <StackLayout >
                         <StackLayout Orientation="Horizontal">
-                        <Label Text="Breakfast" TextColor="Black" HorizontalOptions="Start" Margin="20,15,0,0" FontSize="18"/>
-                        <Image Source="yemek.png" HeightRequest="30" HorizontalOptions="CenterAndExpand" Margin="0,10,0,0" VerticalOptions="Start"/>
-                        <Label  x:Name="yemek" Text="" HorizontalOptions="EndAndExpand" TextColor="Black"  Margin="0,15,20,0" FontSize="18"/>
+                        <Label Text="Breakfast" TextColor="DeepPink" HorizontalOptions="Start" Margin="20,15,0,0" FontSize="18"/>
+                        <Label Text="Fat" TextColor="YellowGreen" HorizontalOptions="Center" Margin="30,15,0,0" FontSize="18"/>
+                        <Label Text="Protein" TextColor="Orange" HorizontalOptions="Center" Margin="30,15,0,0" FontSize="18"/>
+                        <Label  x:Name="breakfast" Text="" HorizontalOptions="EndAndExpand" TextColor="Black"  Margin="0,15,20,0" FontSize="18"/>
                     </StackLayout>
                         <Label Text="____________________________________________________" HorizontalTextAlignment="Center" TextColor="Black" />
                         <StackLayout>
-                            <ListView x:Name="BreakfastList" SelectionMode="None">
+                            <ListView IsPullToRefreshEnabled="True" Refreshing="refresh_list" x:Name="BreakfastListInfo" SelectionMode="None">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <ViewCell>
                                             <StackLayout Orientation="Horizontal">
-                                                <Label Margin="20,0,0,0" Text="{Binding name}" HorizontalOptions="StartAndExpand" FontSize="16" TextColor="Black" />
-                                                <Label Text="{Binding fat_total_g}" Margin="0,0,20,0" FontSize="16" TextColor="Black"/>
-                                                <Label Text="{Binding protein_g}" Margin="0,0,20,0" FontSize="16" TextColor="Black"/>
-                                                <Label Text="{Binding calories}" Margin="0,0,20,0" FontSize="16" TextColor="Black"/>
+                                                <Label Margin="20,0,0,0" Text="{Binding name}" HorizontalOptions="Start" FontSize="16" WidthRequest="110" TextColor="DeepPink" />
+                                                <Label Text="{Binding fat}"  HorizontalOptions="Fill"  FontSize="16" WidthRequest="65" TextColor="Black"/>
+                                                <Label Text="{Binding protein}"  FontSize="16"  HorizontalOptions="Fill" WidthRequest="50" TextColor="Black"/>
+                                                <Label Text="{Binding calories}" Margin="0,0,20,0" FontSize="16" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" TextColor="Black"/>
                                             </StackLayout>
                                         </ViewCell>
                                     </DataTemplate>
@@ -51,168 +52,143 @@
                         </StackLayout>
                     </StackLayout>
                 </Frame>
-                
-                <Frame HasShadow="True" CornerRadius="10" Margin="20,20,20,0" Padding="0" HeightRequest="220" VerticalOptions="Start" BackgroundColor="#e0e0e0">
-                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <StackLayout  Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
-                            <Image Source="yemek.png" HeightRequest="25" HorizontalOptions="Center"/>
-                            <StackLayout Spacing="7" HorizontalOptions="CenterAndExpand">
-                                <Label Text="{Binding Meal, StringFormat='{0:N0}kj'}" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
-                                <Label Text="Meal" TextColor="#7D7D7D" FontSize="11" HorizontalOptions="Center"/>
-                            </StackLayout>
-                            <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer />
-                            </StackLayout.GestureRecognizers>
+
+                <Frame HasShadow="True" CornerRadius="10" Margin="20,20,20,0" Padding="0" HeightRequest="150" VerticalOptions="Start" BackgroundColor="#e0e0e0">
+                    <StackLayout >
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Lunch" TextColor="DeepPink" HorizontalOptions="Start" Margin="20,15,0,0" FontSize="18"/>
+                            <Label Text="Fat" TextColor="YellowGreen" HorizontalOptions="Center" Margin="60,15,0,0" FontSize="18"/>
+                            <Label Text="Protein" TextColor="Orange" HorizontalOptions="Center" Margin="30,15,0,0" FontSize="18"/>
+                            <Label  x:Name="lunch" Text="" HorizontalOptions="EndAndExpand" TextColor="Black"  Margin="0,15,20,0" FontSize="18"/>
                         </StackLayout>
-                        <StackLayout Grid.Column="1" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand" >
-                            <Image  Source="waterbottle.png" HeightRequest="25" HorizontalOptions="Center"/>
-                            <StackLayout Spacing="7" HorizontalOptions="CenterAndExpand">
-                                <Label Text="{Binding Water,StringFormat='{0:N0}ml'}" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
-                                <Label Text="Water" TextColor="#7D7D7D" FontSize="11" HorizontalOptions="Center"/>
-                            </StackLayout>
-                            <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer />
-                            </StackLayout.GestureRecognizers>
+                        <Label Text="____________________________________________________" HorizontalTextAlignment="Center" TextColor="Black" />
+                        <StackLayout>
+                            <ListView x:Name="LunchListInfo" SelectionMode="None">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Margin="20,0,0,0" Text="{Binding name}" HorizontalOptions="Start" FontSize="16" WidthRequest="110" TextColor="DeepPink" />
+                                                <Label Text="{Binding fat}"  HorizontalOptions="Fill"  FontSize="16" WidthRequest="65" TextColor="Black"/>
+                                                <Label Text="{Binding protein}"  FontSize="16"  HorizontalOptions="Fill" WidthRequest="50" TextColor="Black"/>
+                                                <Label Text="{Binding calories}" Margin="0,0,20,0" FontSize="16" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" TextColor="Black"/>
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
                         </StackLayout>
-                        <StackLayout Grid.Column="2" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
-                            <Image Source="kedi.png" HeightRequest="25" HorizontalOptions="Center"/>
-                            <StackLayout Spacing="7" HorizontalOptions="CenterAndExpand">
-                                <Label Text="{Binding Exercise, StringFormat= '{0:N0}calorie'}" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
-                                <Label Text="Exercise" TextColor="#7D7D7D" FontSize="11" HorizontalOptions="Center"/>
-                            </StackLayout>
-                            <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer />
-                            </StackLayout.GestureRecognizers>
-                        </StackLayout>
-                        <StackLayout Grid.Column="3" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
-                            <Image Source="congratulate.png" HeightRequest="25" HorizontalOptions="Center"/>
-                            <StackLayout Spacing="7" HorizontalOptions="CenterAndExpand">
-                                <Label Text="24%" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
-                                <Label Text="Success" TextColor="#7D7D7D" FontSize="11" HorizontalOptions="Center"/>
-                            </StackLayout>
-                            <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer />
-                            </StackLayout.GestureRecognizers>
-                        </StackLayout>
-                    </Grid>
+                    </StackLayout>
                 </Frame>
-                <Frame HasShadow="True" CornerRadius="10" Margin="20,20,20,0" Padding="0" HeightRequest="120" VerticalOptions="Start" BackgroundColor="#e0e0e0">
-                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <StackLayout  Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
-                            <Image Source="yemek.png" HeightRequest="25" HorizontalOptions="Center"/>
-                            <StackLayout Spacing="7" HorizontalOptions="CenterAndExpand">
-                                <Label Text="{Binding Meal, StringFormat='{0:N0}kj'}" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
-                                <Label Text="Meal" TextColor="#7D7D7D" FontSize="11" HorizontalOptions="Center"/>
-                            </StackLayout>
-                            <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer />
-                            </StackLayout.GestureRecognizers>
+                <Frame HasShadow="True" CornerRadius="10" Margin="20,20,20,0" Padding="0" HeightRequest="150" VerticalOptions="Start" BackgroundColor="#e0e0e0">
+                    <StackLayout >
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Dinner" TextColor="DeepPink" HorizontalOptions="Start" Margin="20,15,0,0" FontSize="18"/>
+                            <Label Text="Fat" TextColor="YellowGreen" HorizontalOptions="Center" Margin="60,15,0,0" FontSize="18"/>
+                            <Label Text="Protein" TextColor="Orange" HorizontalOptions="Center" Margin="30,15,0,0" FontSize="18"/>
+                            <Label  x:Name="dinner" Text="" HorizontalOptions="EndAndExpand" TextColor="Black"  Margin="0,15,20,0" FontSize="18"/>
                         </StackLayout>
-                        <StackLayout Grid.Column="1" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand" >
-                            <Image  Source="waterbottle.png" HeightRequest="25" HorizontalOptions="Center"/>
-                            <StackLayout Spacing="7" HorizontalOptions="CenterAndExpand">
-                                <Label Text="{Binding Water,StringFormat='{0:N0}ml'}" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
-                                <Label Text="Water" TextColor="#7D7D7D" FontSize="11" HorizontalOptions="Center"/>
-                            </StackLayout>
-                            <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer />
-                            </StackLayout.GestureRecognizers>
+                        <Label Text="____________________________________________________" HorizontalTextAlignment="Center" TextColor="Black" />
+                        <StackLayout>
+                            <ListView x:Name="DinnerListInfo" SelectionMode="None">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Margin="20,0,0,0" Text="{Binding name}" HorizontalOptions="Start" FontSize="16" WidthRequest="110" TextColor="DeepPink" />
+                                                <Label Text="{Binding fat}"  HorizontalOptions="Fill"  FontSize="16" WidthRequest="65" TextColor="Black"/>
+                                                <Label Text="{Binding protein}"  FontSize="16"  HorizontalOptions="Fill" WidthRequest="50" TextColor="Black"/>
+                                                <Label Text="{Binding calories}" Margin="0,0,20,0" FontSize="16" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" TextColor="Black"/>
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
                         </StackLayout>
-                        <StackLayout Grid.Column="2" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
-                            <Image Source="kedi.png" HeightRequest="25" HorizontalOptions="Center"/>
-                            <StackLayout Spacing="7" HorizontalOptions="CenterAndExpand">
-                                <Label Text="{Binding Exercise, StringFormat= '{0:N0}calorie'}" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
-                                <Label Text="Exercise" TextColor="#7D7D7D" FontSize="11" HorizontalOptions="Center"/>
-                            </StackLayout>
-                            <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer />
-                            </StackLayout.GestureRecognizers>
-                        </StackLayout>
-                        <StackLayout Grid.Column="3" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
-                            <Image Source="congratulate.png" HeightRequest="25" HorizontalOptions="Center"/>
-                            <StackLayout Spacing="7" HorizontalOptions="CenterAndExpand">
-                                <Label Text="24%" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
-                                <Label Text="Success" TextColor="#7D7D7D" FontSize="11" HorizontalOptions="Center"/>
-                            </StackLayout>
-                            <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer />
-                            </StackLayout.GestureRecognizers>
-                        </StackLayout>
-                    </Grid>
+                    </StackLayout>
                 </Frame>
-                <Frame HasShadow="True" CornerRadius="10" Margin="20,20,20,0" Padding="0" HeightRequest="120" VerticalOptions="Start" BackgroundColor="#e0e0e0">
-                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <StackLayout  Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
-                            <Image Source="yemek.png" HeightRequest="25" HorizontalOptions="Center"/>
-                            <StackLayout Spacing="7" HorizontalOptions="CenterAndExpand">
-                                <Label Text="{Binding Meal, StringFormat='{0:N0}kj'}" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
-                                <Label Text="Meal" TextColor="#7D7D7D" FontSize="11" HorizontalOptions="Center"/>
-                            </StackLayout>
-                            <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer />
-                            </StackLayout.GestureRecognizers>
+                <Frame HasShadow="True" CornerRadius="10" Margin="20,20,20,0" Padding="0" HeightRequest="150" VerticalOptions="Start" BackgroundColor="#e0e0e0">
+                    <StackLayout >
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Snack" TextColor="DeepPink" HorizontalOptions="Start" Margin="20,15,0,0" FontSize="18"/>
+                            <Label Text="Fat" TextColor="YellowGreen" HorizontalOptions="Center" Margin="70,15,0,0" FontSize="18"/>
+                            <Label Text="Protein" TextColor="Orange" HorizontalOptions="Center" Margin="30,15,0,0" FontSize="18"/>
+                            <Label  x:Name="snack" Text="" HorizontalOptions="EndAndExpand" TextColor="Black"  Margin="0,15,20,0" FontSize="18"/>
                         </StackLayout>
-                        <StackLayout Grid.Column="1" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand" >
-                            <Image  Source="waterbottle.png" HeightRequest="25" HorizontalOptions="Center"/>
-                            <StackLayout Spacing="7" HorizontalOptions="CenterAndExpand">
-                                <Label Text="{Binding Water,StringFormat='{0:N0}ml'}" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
-                                <Label Text="Water" TextColor="#7D7D7D" FontSize="11" HorizontalOptions="Center"/>
-                            </StackLayout>
-                            <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer />
-                            </StackLayout.GestureRecognizers>
+                        <Label Text="____________________________________________________" HorizontalTextAlignment="Center" TextColor="Black" />
+                        <StackLayout>
+                            <ListView x:Name="SnackListInfo" SelectionMode="None">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Margin="20,0,0,0" Text="{Binding name}" HorizontalOptions="Start" FontSize="16" WidthRequest="110" TextColor="DeepPink" />
+                                                <Label Text="{Binding fat}"  HorizontalOptions="Fill"  FontSize="16" WidthRequest="65" TextColor="Black"/>
+                                                <Label Text="{Binding protein}"  FontSize="16"  HorizontalOptions="Fill" WidthRequest="50" TextColor="Black"/>
+                                                <Label Text="{Binding calories}" Margin="0,0,20,0" FontSize="16" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" TextColor="Black"/>
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
                         </StackLayout>
-                        <StackLayout Grid.Column="2" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
-                            <Image Source="kedi.png" HeightRequest="25" HorizontalOptions="Center"/>
-                            <StackLayout Spacing="7" HorizontalOptions="CenterAndExpand">
-                                <Label Text="{Binding Exercise, StringFormat= '{0:N0}calorie'}" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
-                                <Label Text="Exercise" TextColor="#7D7D7D" FontSize="11" HorizontalOptions="Center"/>
-                            </StackLayout>
-                            <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer />
-                            </StackLayout.GestureRecognizers>
-                        </StackLayout>
-                        <StackLayout Grid.Column="3" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
-                            <Image Source="congratulate.png" HeightRequest="25" HorizontalOptions="Center"/>
-                            <StackLayout Spacing="7" HorizontalOptions="CenterAndExpand">
-                                <Label Text="24%" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
-                                <Label Text="Success" TextColor="#7D7D7D" FontSize="11" HorizontalOptions="Center"/>
-                            </StackLayout>
-                            <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer />
-                            </StackLayout.GestureRecognizers>
-                        </StackLayout>
-                    </Grid>
+                    </StackLayout>
                 </Frame>
             </StackLayout>
         </ScrollView>
         <StackLayout>
-            <Frame x:Name="miniWindow" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="300" HeightRequest="1500" CornerRadius="20"
-                   Margin="0,0,0,20" IsVisible="false">
+            <Frame x:Name="miniWindow" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="300" HeightRequest="9000" CornerRadius="20"
+                   Margin="0,0,0,10" HasShadow="True" IsVisible="false">
                 <StackLayout Orientation="Vertical">
+                    <Frame HorizontalOptions="Start" Margin="-10,0,-10,0"  CornerRadius="10" HasShadow="True">
+                        <StackLayout Orientation="Horizontal">
+                            <Label TextColor="Black" WidthRequest="90" >
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span x:Name="breakfast_IsClicked" Text="Breakfast" TextColor="DeepPink" FontSize="18" FontAttributes="bold" TextDecorations="Underline"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="breakfast_Tapped"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                            <Label TextColor="Black" WidthRequest="60">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span x:Name="lunch_IsClicked" Text="Lunch" TextColor="DeepPink" FontSize="18" FontAttributes="bold" TextDecorations="Underline"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="lunch_Tapped"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Label TextColor="Black" WidthRequest="60">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span x:Name="dinner_IsClicked" Text="Dinner" TextColor="DeepPink" FontSize="18" FontAttributes="bold" TextDecorations="Underline"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="dinner_Tapped"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Label TextColor="Black">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span x:Name="snack_IsClicked" Text="Snack" TextColor="DeepPink" FontSize="18" FontAttributes="bold" TextDecorations="Underline"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="snack_Tapped"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+                    </Frame>
                     <Label Text="Search meal" TextColor="Black" FontSize="30" HorizontalOptions="Center"/>
                     <StackLayout Orientation="Horizontal">
                         <Label Text="Meal:" TextColor="Black" HorizontalOptions="Start" Margin="0,15,0,0" FontSize="18"/>
                         <Entry x:Name="mealInfo" PlaceholderColor="Black" HorizontalOptions="Center" TextColor="Black" BackgroundColor="#e0e0e0" 
-                           WidthRequest="200" Placeholder="#egg" TextChanged="mealInfo_TextChanged_1"/>
+                           WidthRequest="200" Placeholder="#egg" />
                     </StackLayout>
                     <StackLayout Orientation="Horizontal">
                         <Label Text="Sum: " TextColor="Black" HorizontalOptions="Start" Margin="0,15,0,0" FontSize="18"/>
@@ -221,6 +197,7 @@
                     </StackLayout>
                     <Button  VerticalOptions="Center"
                              Text="save"
+                             x:Name="saveform"
                              TextColor="ForestGreen"
                              BackgroundColor="Transparent"
                              BorderColor="ForestGreen"
