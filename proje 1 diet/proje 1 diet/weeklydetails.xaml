@@ -84,7 +84,7 @@
                                 <Image Grid.Column="1" Source="{Binding Icon}" WidthRequest="38" HeightRequest="38" HorizontalOptions="Center" VerticalOptions="Center"/>
                                 <StackLayout Grid.Column="2" Orientation="Horizontal" Margin="20,0" HorizontalOptions="End" VerticalOptions="Center">
                                     <Label Text="{Binding Value}" TextColor="Black" FontSize="15" FontAttributes="Bold" VerticalOptions="Center"/>
-                                    <Label  x:Name="simge" Text="" TextColor="Black" FontSize="15" VerticalOptions="Center"/>
+                                    <Label   Text="{Binding sym}" TextColor="Black" FontSize="15" VerticalOptions="Center"/>
                                 </StackLayout>
                             </Grid>
                         </Frame>

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
@@ -32,18 +33,19 @@ namespace proje_1_diet
 
         protected async override void OnAppearing()
         {
+            
             person = await PersonGet();
             currentTime = DateTime.Now.Day;
             day = DateTime.Now;
             WeeklyInfo = new ObservableCollection<Weekly>
             {
-                new Weekly{ Date = day.DayOfWeek.ToString(),Value=person.Calories[day.Day-1] ,Icon="yemek.png" },
-                new Weekly{ Date = day.AddDays(-1).DayOfWeek.ToString(),Value=person.Calories[day.Day-2] ,Icon="yemek.png" },
-                new Weekly{ Date = day.AddDays(-2).DayOfWeek.ToString(),Value=person.Calories[day.Day-3],Icon="yemek.png" },
-                new Weekly{ Date = day.AddDays(-3).DayOfWeek.ToString(),Value=person.Calories[day.Day-4],Icon="yemek.png" },
-                new Weekly{ Date = day.AddDays(-4).DayOfWeek.ToString(),Value=person.Calories[day.Day-5],Icon="yemek.png" },
-                new Weekly{ Date = day.AddDays(-5).DayOfWeek.ToString(),Value=person.Calories[day.Day-6],Icon="yemek.png" },
-                new Weekly{ Date = day.AddDays(-6).DayOfWeek.ToString(),Value=person.Calories[day.Day-7],Icon="yemek.png" }
+                new Weekly{ Date = day.DayOfWeek.ToString(),Value=person.Calories[day.Day-1],Icon="yemek.png",sym="cal" },
+                new Weekly{ Date = day.AddDays(-1).DayOfWeek.ToString(),Value=person.Calories[day.Day-2],Icon="yemek.png" , sym = "cal"},
+                new Weekly{ Date = day.AddDays(-2).DayOfWeek.ToString(),Value=person.Calories[day.Day-3] ,Icon="yemek.png" , sym = "cal"},
+                new Weekly{ Date = day.AddDays(-3).DayOfWeek.ToString(),Value=person.Calories[day.Day-4],Icon="yemek.png" , sym = "cal"},
+                new Weekly{ Date = day.AddDays(-4).DayOfWeek.ToString(),Value=person.Calories[day.Day-5],Icon="yemek.png" , sym = "cal"},
+                new Weekly{ Date = day.AddDays(-5).DayOfWeek.ToString(),Value=person.Calories[day.Day-6],Icon="yemek.png" , sym = "cal"},
+                new Weekly{ Date = day.AddDays(-6).DayOfWeek.ToString(),Value=person.Calories[day.Day-7],Icon="yemek.png" , sym = "cal"}
             };
             WeeklyDataList.ItemsSource = WeeklyInfo;
         }
@@ -95,13 +97,13 @@ namespace proje_1_diet
             WeeklyInfo = null;
             WeeklyInfo = new ObservableCollection<Weekly>
             {
-                new Weekly{ Date = day.DayOfWeek.ToString(),Value=person.Water[day.Day-1],Icon="waterbottle.png" },
-                new Weekly{ Date = day.AddDays(-1).DayOfWeek.ToString(),Value=person.Water[day.Day-2],Icon="waterbottle.png" },
-                new Weekly{ Date = day.AddDays(-2).DayOfWeek.ToString(),Value=person.Water[day.Day-3],Icon="waterbottle.png" },
-                new Weekly{ Date = day.AddDays(-3).DayOfWeek.ToString(),Value=person.Water[day.Day-4],Icon="waterbottle.png" },
-                new Weekly{ Date = day.AddDays(-4).DayOfWeek.ToString(),Value=person.Water[day.Day-5],Icon="waterbottle.png" },
-                new Weekly{ Date = day.AddDays(-5).DayOfWeek.ToString(),Value=person.Water[day.Day-6],Icon="waterbottle.png" },
-                new Weekly{ Date = day.AddDays(-6).DayOfWeek.ToString(),Value=person.Water[day.Day-7],Icon="waterbottle.png" }
+                new Weekly{ Date = day.DayOfWeek.ToString(),Value=person.Water[day.Day-1],Icon="waterbottle.png" ,sym="ml"},
+                new Weekly{ Date = day.AddDays(-1).DayOfWeek.ToString(),Value=person.Water[day.Day-2],Icon="waterbottle.png" ,sym="ml"},
+                new Weekly{ Date = day.AddDays(-2).DayOfWeek.ToString(),Value=person.Water[day.Day-3],Icon="waterbottle.png" ,sym="ml"},
+                new Weekly{ Date = day.AddDays(-3).DayOfWeek.ToString(),Value=person.Water[day.Day-4],Icon="waterbottle.png" ,sym = "ml"},
+                new Weekly{ Date = day.AddDays(-4).DayOfWeek.ToString(),Value=person.Water[day.Day-5],Icon="waterbottle.png" ,sym = "ml"},
+                new Weekly{ Date = day.AddDays(-5).DayOfWeek.ToString(),Value=person.Water[day.Day-6],Icon="waterbottle.png" ,sym = "ml"},
+                new Weekly{ Date = day.AddDays(-6).DayOfWeek.ToString(),Value=person.Water[day.Day-7],Icon="waterbottle.png" ,sym = "ml"}
             };
             WeeklyDataList.ItemsSource= WeeklyInfo; 
         }
@@ -112,13 +114,13 @@ namespace proje_1_diet
             WeeklyInfo = null;
             WeeklyInfo = new ObservableCollection<Weekly>
             {
-                new Weekly{ Date = day.DayOfWeek.ToString(),Value=person.Calories[day.Day-1],Icon="yemek.png" },
-                new Weekly{ Date = day.AddDays(-1).DayOfWeek.ToString(),Value=person.Calories[day.Day-2],Icon="yemek.png" },
-                new Weekly{ Date = day.AddDays(-2).DayOfWeek.ToString(),Value=person.Calories[day.Day-3] ,Icon="yemek.png" },
-                new Weekly{ Date = day.AddDays(-3).DayOfWeek.ToString(),Value=person.Calories[day.Day-4],Icon="yemek.png" },
-                new Weekly{ Date = day.AddDays(-4).DayOfWeek.ToString(),Value=person.Calories[day.Day-5],Icon="yemek.png" },
-                new Weekly{ Date = day.AddDays(-5).DayOfWeek.ToString(),Value=person.Calories[day.Day-6],Icon="yemek.png" },
-                new Weekly{ Date = day.AddDays(-6).DayOfWeek.ToString(),Value=person.Calories[day.Day-7],Icon="yemek.png" }
+                new Weekly{ Date = day.DayOfWeek.ToString(),Value=person.Calories[day.Day-1],Icon="yemek.png",sym="cal" },
+                new Weekly{ Date = day.AddDays(-1).DayOfWeek.ToString(),Value=person.Calories[day.Day-2],Icon="yemek.png" , sym = "cal"},
+                new Weekly{ Date = day.AddDays(-2).DayOfWeek.ToString(),Value=person.Calories[day.Day-3] ,Icon="yemek.png" , sym = "cal"},
+                new Weekly{ Date = day.AddDays(-3).DayOfWeek.ToString(),Value=person.Calories[day.Day-4],Icon="yemek.png" , sym = "cal"},
+                new Weekly{ Date = day.AddDays(-4).DayOfWeek.ToString(),Value=person.Calories[day.Day-5],Icon="yemek.png" , sym = "cal"},
+                new Weekly{ Date = day.AddDays(-5).DayOfWeek.ToString(),Value=person.Calories[day.Day-6],Icon="yemek.png" , sym = "cal"},
+                new Weekly{ Date = day.AddDays(-6).DayOfWeek.ToString(),Value=person.Calories[day.Day-7],Icon="yemek.png" , sym = "cal"}
             };
             WeeklyDataList.ItemsSource = WeeklyInfo;
         }
@@ -128,13 +130,13 @@ namespace proje_1_diet
             WeeklyInfo = null;
             WeeklyInfo = new ObservableCollection<Weekly>
             {
-                new Weekly{ Date = day.DayOfWeek.ToString(),Value=person.Excersize[day.Day-1] ,Icon="kedi.png" },
-                new Weekly{ Date = day.AddDays(-1).DayOfWeek.ToString(),Value=person.Excersize[day.Day-2],Icon="kedi.png" },
-                new Weekly{ Date = day.AddDays(-2).DayOfWeek.ToString(),Value=person.Excersize[day.Day-2] ,Icon="kedi.png" },
-                new Weekly{ Date = day.AddDays(-3).DayOfWeek.ToString(),Value=person.Excersize[day.Day-2],Icon="kedi.png" },
-                new Weekly{ Date = day.AddDays(-4).DayOfWeek.ToString(),Value=person.Excersize[day.Day-2],Icon="kedi.png" },
-                new Weekly{ Date = day.AddDays(-5).DayOfWeek.ToString(),Value=person.Excersize[day.Day-2],Icon="kedi.png" },
-                new Weekly{ Date = day.AddDays(-6).DayOfWeek.ToString(),Value=person.Excersize[day.Day-2] ,Icon="kedi.png" }
+                new Weekly{ Date = day.DayOfWeek.ToString(),Value=person.Excersize[day.Day-1] ,Icon="kedi.png",sym="cal" },
+                new Weekly{ Date = day.AddDays(-1).DayOfWeek.ToString(),Value=person.Excersize[day.Day-2],Icon="kedi.png",sym="cal" },
+                new Weekly{ Date = day.AddDays(-2).DayOfWeek.ToString(),Value=person.Excersize[day.Day-2] ,Icon="kedi.png" , sym = "cal"},
+                new Weekly{ Date = day.AddDays(-3).DayOfWeek.ToString(),Value=person.Excersize[day.Day-2],Icon="kedi.png" , sym = "cal"},
+                new Weekly{ Date = day.AddDays(-4).DayOfWeek.ToString(),Value=person.Excersize[day.Day-2],Icon="kedi.png" , sym = "cal"},
+                new Weekly{ Date = day.AddDays(-5).DayOfWeek.ToString(),Value=person.Excersize[day.Day-2],Icon="kedi.png" , sym = "cal"},
+                new Weekly{ Date = day.AddDays(-6).DayOfWeek.ToString(),Value=person.Excersize[day.Day-2] ,Icon="kedi.png" , sym = "cal"}
             };
             WeeklyDataList.ItemsSource = WeeklyInfo;
         }
@@ -148,5 +150,6 @@ namespace proje_1_diet
         public string Value { get; set; }
         public string Date { get; set; }
         public string Icon { get; set; }
+        public string sym { get; set; } 
     }
 }

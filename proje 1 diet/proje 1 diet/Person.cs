@@ -28,6 +28,7 @@ namespace proje_1_diet
         public string Job { get; set; }
         public string Adress { get; set; }
         public string timeInfo { get; set; }
+        public string Goal { get; set; }
         
     }
     public class meal

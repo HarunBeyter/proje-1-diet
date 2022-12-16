@@ -3,94 +3,148 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="proje_1_diet.profilePage"
              xmlns:CI="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin">
-
-    <ScrollView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="White">
-        <Grid VerticalOptions="FillAndExpand">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Frame BackgroundColor="LightBlue"></Frame>
-            <Grid HeightRequest="200"
+    <StackLayout BackgroundColor="White">
+        <ScrollView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="White">
+            <Grid VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Frame BackgroundColor="LightBlue"></Frame>
+                <Grid HeightRequest="200"
               BackgroundColor="LightBlue">
-                <Image Aspect="AspectFill" Source="weeklybackground.png"/>
-                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" HeightRequest="200">
-                    <Frame CornerRadius="200" HorizontalOptions="CenterAndExpand" Margin="5,-20,5,5" BackgroundColor="Transparent">
-                        <CI:CircleImage WidthRequest="150"  BorderThickness="4" HeightRequest="150" Aspect="AspectFill" Source="harun.png" BackgroundColor="Transparent" BorderColor="Orange"/>
-                    </Frame>
-                </StackLayout>
-            </Grid>
-            <Frame Grid.Row="1" HasShadow="True" CornerRadius="10" Margin="20,-50,20,0" Padding="18" HeightRequest="220" VerticalOptions="StartAndExpand">
-                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <StackLayout Orientation="Vertical" Spacing="6" HorizontalOptions="CenterAndExpand">
-                        <Label Text="Harun Beyter" FontSize="20" FontAttributes="Bold" TextColor="Black" HorizontalOptions="CenterAndExpand"/>
-                        <Label Text="(Senior Software Engineer)" FontSize="12" TextColor="#2c3e50" HorizontalOptions="CenterAndExpand"/>
-                        <StackLayout Orientation="Horizontal" Spacing="10" HorizontalOptions="CenterAndExpand">
-                            <Image Source="location.png" WidthRequest="10" HeightRequest="15" VerticalOptions="Center"/>
-                            <Label Text="Beylikdüzü, İstanbul, Türkiye" TextColor="#34495e" FontSize="14" FontAttributes="Bold" VerticalOptions="Center"/>
-                        </StackLayout>
+                    <Image Aspect="AspectFill" Source="weeklybackground.png"/>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" HeightRequest="200">
+                        <Frame CornerRadius="200" HorizontalOptions="CenterAndExpand" Margin="5,-20,5,5" BackgroundColor="Transparent">
+                            <CI:CircleImage WidthRequest="150"  BorderThickness="4" HeightRequest="150" Aspect="AspectFill" Source="harun.png" BackgroundColor="Transparent" BorderColor="Orange"/>
+                        </Frame>
                     </StackLayout>
-                    <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" Margin="0,20,0,0" VerticalOptions="CenterAndExpand">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <StackLayout Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
-                            <Image Source="yemek.png" WidthRequest="45" HeightRequest="45" HorizontalOptions="CenterAndExpand"/>
-                            <Label Text="Height" TextColor="#2c3e50" FontSize="12" HorizontalOptions="Center"/>
+                </Grid>
+                <Frame Grid.Row="1" HasShadow="True" CornerRadius="10" Margin="20,-50,20,0" Padding="18" HeightRequest="220" VerticalOptions="StartAndExpand">
+                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <StackLayout Orientation="Vertical" Spacing="6" HorizontalOptions="CenterAndExpand">
+                            <Label x:Name="name" Text="" FontSize="20" FontAttributes="Bold" TextColor="Black" HorizontalOptions="CenterAndExpand"/>
+                            <Label x:Name="job" Text="" FontSize="12" TextColor="#2c3e50" HorizontalOptions="CenterAndExpand"/>
+                            <StackLayout Orientation="Horizontal" Spacing="10" HorizontalOptions="CenterAndExpand">
+                                <Image Source="location.png" WidthRequest="10" HeightRequest="15" VerticalOptions="Center"/>
+                                <Label x:Name="adress" Text="" TextColor="#34495e" FontSize="14" FontAttributes="Bold" VerticalOptions="Center"/>
+                            </StackLayout>
                         </StackLayout>
-                        <StackLayout Grid.Column="1" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
-                            <Image Source="yemek.png" WidthRequest="45" HeightRequest="45" HorizontalOptions="CenterAndExpand"/>
-                            <Label Text="Weight" TextColor="#2c3e50" FontSize="12" HorizontalOptions="Center"/>
-                        </StackLayout>
-                        <StackLayout Grid.Column="2" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
-                            <Image Source="yemek.png" WidthRequest="45" HeightRequest="45" HorizontalOptions="CenterAndExpand"/>
-                            <Label Text="Height" TextColor="#2c3e50" FontSize="12" HorizontalOptions="Center"/>
-                        </StackLayout>
-                        
+                        <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" Margin="0,20,0,0" VerticalOptions="CenterAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackLayout Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
+                                <Image Source="yemek.png" WidthRequest="45" HeightRequest="45" HorizontalOptions="CenterAndExpand"/>
+                                <Label Text="Height" TextColor="#2c3e50" FontSize="12" HorizontalOptions="Center"/>
+                                <Label x:Name="height" Text="" TextColor="#2c3e50" FontSize="12" HorizontalOptions="Center"/>
+                            </StackLayout>
+                            <StackLayout Grid.Column="1" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
+                                <Image Source="yemek.png" WidthRequest="45" HeightRequest="45" HorizontalOptions="CenterAndExpand"/>
+                                <Label Text="Weight" TextColor="#2c3e50" FontSize="12" HorizontalOptions="Center"/>
+                                <Label x:Name="weight" Text="" TextColor="#2c3e50" FontSize="12" HorizontalOptions="Center"/>
+                            </StackLayout>
+                            <StackLayout Grid.Column="2" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
+                                <Image Source="yemek.png" WidthRequest="45" HeightRequest="45" HorizontalOptions="CenterAndExpand"/>
+                                <Label Text="Blood Type" TextColor="#2c3e50" FontSize="12" HorizontalOptions="Center"/>
+                                <Label x:Name="bloodtype" Text="" TextColor="#2c3e50" FontSize="12" HorizontalOptions="Center"/>
+                            </StackLayout>
+
+                        </Grid>
                     </Grid>
-                </Grid>
+                </Frame>
+                <Frame Grid.Row="2" HasShadow="True" HeightRequest="265" CornerRadius="10" Margin="20" Padding="18" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
+                    <Grid RowSpacing="20">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Label Text="DİET" FontSize="17" TextColor="#2C3E50"/>
+                        <Label Grid.Row="1" Text="" FontSize="14" TextColor="#707070"/>
+                    </Grid>
+                </Frame>
+                <Frame Grid.Row="3" HasShadow="True" HeightRequest="265" CornerRadius="10" Margin="20" Padding="18" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
+                    <Grid RowSpacing="20">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Label Text="Goal" FontSize="17" TextColor="#2C3E50"/>
+                        <Label x:Name="goal" Grid.Row="1" Text=" " FontSize="14" TextColor="#707070"/>
+                    </Grid>
+                </Frame>
+            </Grid>
+        </ScrollView>
+        <StackLayout>
+            <Frame x:Name="miniWindow" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="300" HeightRequest="9000" CornerRadius="20"
+                   Margin="0,0,0,10" HasShadow="True" IsVisible="false">
+                <StackLayout Orientation="Vertical">
+                    <Label Text="Search meal" TextColor="Black" FontSize="30" HorizontalOptions="Center"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Adress:  " TextColor="Black" HorizontalOptions="Start" Margin="0,15,0,0" FontSize="18"/>
+                        <Entry x:Name="AdressInfo" PlaceholderColor="Black" HorizontalOptions="Center" TextColor="Black" BackgroundColor="#e0e0e0" 
+                           WidthRequest="200" Placeholder="city.country" />
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Job:        " TextColor="Black" HorizontalOptions="Start" Margin="0,15,0,0" FontSize="18"/>
+                        <Entry x:Name="jobInfo" PlaceholderColor="Black" HorizontalOptions="Center" TextColor="Black" BackgroundColor="#e0e0e0" 
+                           WidthRequest="200" Placeholder="engineer"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Blood T.:" TextColor="Black" HorizontalOptions="Start" Margin="0,15,0,0" FontSize="18"/>
+                        <Entry x:Name="BloodInfo" PlaceholderColor="Black" HorizontalOptions="Center" TextColor="Black" BackgroundColor="#e0e0e0" 
+                           WidthRequest="200" Placeholder="ABrh+"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Weight:  " TextColor="Black" HorizontalOptions="Start" Margin="0,15,0,0" FontSize="18"/>
+                        <Entry x:Name="weightInfo" PlaceholderColor="Black" HorizontalOptions="Center" TextColor="Black" BackgroundColor="#e0e0e0" 
+                           WidthRequest="200" Placeholder="50"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Height:   " TextColor="Black" HorizontalOptions="Start" Margin="0,15,0,0" FontSize="18"/>
+                        <Entry x:Name="heightInfo" PlaceholderColor="Black" HorizontalOptions="Center" TextColor="Black" BackgroundColor="#e0e0e0" 
+                           WidthRequest="200" Placeholder="178"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Goal:      " TextColor="Black" HorizontalOptions="Start" Margin="0,15,0,0" FontSize="18"/>
+                        <Entry x:Name="goalInfo" PlaceholderColor="Black" HorizontalOptions="Center" TextColor="Black" BackgroundColor="#e0e0e0" 
+                           WidthRequest="200" Placeholder="178"/>
+                    </StackLayout>
+                    <Button  VerticalOptions="Center"
+                             Text="save"
+                             x:Name="saveform"
+                             TextColor="ForestGreen"
+                             BackgroundColor="Transparent"
+                             BorderColor="ForestGreen"
+                             BorderWidth="1.5"
+                             CornerRadius="50"
+                             Margin="50,10,50,0"
+                             Clicked="saveform_Clicked"/>
+                </StackLayout>
             </Frame>
-            <Frame Grid.Row="2" HasShadow="True" HeightRequest="265" CornerRadius="10" Margin="20" Padding="18" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
-                <Grid RowSpacing="20">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Label Text="Goal" FontSize="17" TextColor="#2C3E50"/>
-                    <Label Grid.Row="1" Text="I am a dedicated person with a family of
-                           four. I enjoy reading, and the knowledge and 
-                           perspectischedule, and handle
-                           many different tasks at once. This flexibility will help me 
-                           in the classroom, where there are many different personalities
-                                               and learning styles." FontSize="14" TextColor="#707070"/>
-                </Grid>
+            <Frame BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,0,0,10">
+                <Frame BackgroundColor="DeepPink"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"
+                   HeightRequest="25"
+                   WidthRequest="15"
+                   Margin="0,-30,0,-10"
+                   BorderColor="Red"
+                   CornerRadius="80">
+                    <CI:CircleImage Source="https://cdn-icons-png.flaticon.com/512/3524/3524388.png" Aspect="AspectFit"/>
+                </Frame>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                </Frame.GestureRecognizers>
             </Frame>
-            <Frame Grid.Row="3" HasShadow="True" HeightRequest="265" CornerRadius="10" Margin="20" Padding="18" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
-                <Grid RowSpacing="20">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Label Text="Goal" FontSize="17" TextColor="#2C3E50"/>
-                    <Label Grid.Row="1" Text="I am a dedicated person with a family of
-                           four. I enjoy reading, and the knowledge and 
-                           perspective that my reading gives me has strengthened 
-                           my teaching skills and presentation abilities. I 
-                           have been successful at raising a family, and I attribute 
-                           this success to my ability to plan, schedule, and handle
-                           many different tasks at once. This flexibility will help me 
-                           in the classroom, where there are many different personalities
-                                               and learning styles." FontSize="14" TextColor="#707070"/>
-                </Grid>
-            </Frame>
-        </Grid>
-    </ScrollView>
+        </StackLayout>
+    </StackLayout>
 </ContentPage>
