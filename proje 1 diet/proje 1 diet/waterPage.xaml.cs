@@ -106,9 +106,9 @@ namespace proje_1_diet
         {
             return new ObservableCollection<Budget>
             {
-                new Budget {Name="1 glass water",Amount=200,Color=Color.Blue,Image="waterglass.png"},
-                new Budget {Name="0.5 lt bottle water",Amount=500,Color=Color.AliceBlue,Image="waterbottle.png"},
-                new Budget {Name="1 lt bottle water",Amount=1000,Color=Color.AliceBlue,Image="waterbottle.png"},
+                new Budget {Name="1 glass water",Amount=200,Color=Color.LightBlue,Image="waterglass.png"},
+                new Budget {Name="0.5 lt bottle water",Amount=500,Color=Color.LightBlue,Image="waterbottle.png"},
+                new Budget {Name="1 lt bottle water",Amount=1000,Color=Color.LightBlue,Image="waterbottle.png"},
             };
         }
 

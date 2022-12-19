@@ -3,18 +3,30 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="proje_1_diet.RegisterPage">
     <ContentPage.Content>
-        <StackLayout Padding="20">
-            <Label Text="Person Entry" VerticalOptions="Center" HorizontalOptions="Center" FontSize="Large"/>
-            <Entry x:Name="TxtName" Placeholder="Enter your name"/>
-            <Entry x:Name="TxtSurName" Placeholder="Enter your surname"/>
-            <Entry x:Name="TxtMail" Placeholder="Enter your mail"/>
-            <Entry x:Name="TxtPassword" Placeholder="Enter your password"/>
-            <Entry x:Name="TxtPasswordistrue" Placeholder="Enter your password again"/>
+        <StackLayout Padding="20" BackgroundColor="#e0e0e0">
+            <Label Text="Person Entry" TextColor="Black" Padding="20" FontAttributes="Bold"  VerticalOptions="Center" HorizontalOptions="Center" FontSize="30"/>
+            <Frame CornerRadius="20" HeightRequest="40">
+            <Entry x:Name="TxtName" TextColor="Black" PlaceholderColor="Black" Placeholder="Enter your name"/>
+            </Frame>
+            <Frame CornerRadius="20" HeightRequest="40">
+            <Entry x:Name="TxtSurName" TextColor="Black" PlaceholderColor="Black" Placeholder="Enter your surname"/>
+            </Frame>
+            <Frame CornerRadius="20" HeightRequest="40">
+                <Entry x:Name="TxtMail" TextColor="Black" PlaceholderColor="Black" Placeholder="Enter your mail"/>
+            </Frame>
+            <Frame CornerRadius="20" HeightRequest="40">
+            <Entry x:Name="TxtPassword" TextColor="Black" PlaceholderColor="Black" Placeholder="Enter your password"/>
+            </Frame>
+            <Frame CornerRadius="20" HeightRequest="40">
+            <Entry x:Name="TxtPasswordistrue" TextColor="Black" PlaceholderColor="Black" Placeholder="Enter your password again"/>
+            </Frame>
+            <Frame  CornerRadius="20">
             <StackLayout Orientation="Horizontal">
-                <Label Text="enter your birth date"/>
-                <DatePicker x:Name="TxtBirthTime" />
+                <Label TextColor="Black" VerticalTextAlignment="Center" Text="Enter your birth date:"/>
+                <DatePicker x:Name="TxtBirthTime"  TextColor="Black"/>
             </StackLayout>
-            <Button Text=" save" x:Name="ButtonSave" CornerRadius="20" Clicked="ButtonSave_Clicked"/>
+            </Frame>
+            <Button Text=" save" x:Name="ButtonSave" BackgroundColor="#455a60" BorderColor="Gray" BorderWidth="2" CornerRadius="20" Clicked="ButtonSave_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

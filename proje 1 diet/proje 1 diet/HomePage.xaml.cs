@@ -65,11 +65,25 @@ namespace proje_1_diet
             lunchList = person.lunch;
             dinnerList = person.dinner;
             snackList = person.snack;
-            if (currentTime != time) { person.timeInfo = Convert.ToString(currentTime); breakfastList.Clear(); lunchList.Clear(); dinnerList.Clear(); snackList.Clear(); }
+            if (breakfastList == null) { breakfastList = new List<meal>(); }
+            if(lunchList == null) { lunchList = new List<meal>(); } 
+            if(snackList == null) { snackList = new List<meal>(); }
+            if(dinnerList == null) { dinnerList = new List<meal>(); }
+            if (currentTime != time) {
+                person.timeInfo = Convert.ToString(currentTime);
+                breakfastList.Clear(); 
+                lunchList.Clear(); 
+                dinnerList.Clear(); 
+                snackList.Clear(); }
             BreakfastListInfo.ItemsSource = breakfastList;
             LunchListInfo.ItemsSource = lunchList;
             DinnerListInfo.ItemsSource = dinnerList;
             SnackListInfo.ItemsSource = snackList;
+            bool isUpdate = await personRepository.Update(person);
+            if (!isUpdate)
+            {
+                await DisplayAlert("hata", "güncellenemedi", "ok");
+            }
         }
         public async Task<Person> PersonGet()
         {
@@ -98,6 +112,7 @@ namespace proje_1_diet
                      Job = item.Object.Job,
                      Adress = item.Object.Adress,
                      timeInfo = item.Object.timeInfo,
+                     Goal=item.Object.Goal,
                  }).ToList()[0];
         }
         public ChartEntry[] chartentry ()

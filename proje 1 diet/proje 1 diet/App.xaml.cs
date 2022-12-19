@@ -15,7 +15,7 @@ namespace proje_1_diet
 
             DependencyService.Register<MockDataStore>();
             //MainPage = new AppShell();
-            MainPage = new LoginUl();
+            MainPage =new NavigationPage(new LoginUl());
         }
 
         protected override void OnStart()

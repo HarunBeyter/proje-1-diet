@@ -52,6 +52,8 @@ namespace proje_1_diet
                 person.Mail = email;
                 person.Password = password;
                 person.BirthTime = BirthDate;
+                person.Goal = "want to lose weight";
+                person.Adress = "city/country";
                 bool IsSaved = await userRepository.Register(email, password, name);
                 var isSaved = await repository.Save(person);
                 if (isSaved && IsSaved)
