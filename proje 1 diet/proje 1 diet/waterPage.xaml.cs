@@ -44,7 +44,7 @@ namespace proje_1_diet
             }
             waterHistory=person.Water;
             currentTime = DateTime.Now.Day;
-            amount = Convert.ToDouble(waterHistory[currentTime-1]);
+            deger = Convert.ToDouble(waterHistory[currentTime-1]);
             
         }
         
@@ -90,8 +90,8 @@ namespace proje_1_diet
         static string[] waterHistory;
         static int currentTime;
         private double amount;
-        public static float deger = 0;
-        public static float gecici = 0;
+        public static double deger = 0;
+        public static double gecici = 0;
         public double SelectedAmount
         {
             get { return amount; }

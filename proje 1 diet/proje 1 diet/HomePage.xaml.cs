@@ -17,6 +17,7 @@ using proje_1_diet.Models;
 using System.Collections.ObjectModel;
 using Firebase.Database;
 using System.Collections;
+using System.Runtime.CompilerServices;
 
 namespace proje_1_diet
 {
@@ -34,6 +35,7 @@ namespace proje_1_diet
         static bool isLunch;
         static bool isDinner;
         static bool isSnack;
+       
 
 
         public HomePage()
@@ -42,10 +44,11 @@ namespace proje_1_diet
             //önemli api bağlantısı
 
             mail = Preferences.Get("person", "null");
-           
+
             chartViewRadialGauge.Chart = new RadialGaugeChart
             {
                 Entries = chartentry(),
+                MaxValue = 10000,
                 LineSize = -10,
                 LineAreaAlpha = 52,
                 StartAngle = -90,
@@ -60,7 +63,7 @@ namespace proje_1_diet
             currentTime = DateTime.Now.Day;
             time = Convert.ToInt32(person.timeInfo);
             waterınfo = Convert.ToInt32(person.Water[currentTime - 1]);
-            breakfast.Text = person.Calories[currentTime - 1];
+            breakfast.Text = (person.Calories[currentTime - 1]);
             breakfastList = person.Breakfast;
             lunchList = person.lunch;
             dinnerList = person.dinner;
@@ -84,6 +87,39 @@ namespace proje_1_diet
             {
                 await DisplayAlert("hata", "güncellenemedi", "ok");
             }
+            chartViewRadialGauge.Chart = new RadialGaugeChart
+            {
+                Entries = chartentry(),
+                MaxValue = 10000,
+                LineSize = -10,
+                LineAreaAlpha = 52,
+                StartAngle = -90,
+                LabelTextSize = 30,
+                IsAnimated = true
+            };
+           ChartEntry[] chartentry()
+            {
+                ChartEntry[] entries = new[]
+            {
+
+             new ChartEntry(248)
+            {
+
+                Color=SKColor.Parse("#77d065")
+            },
+              new ChartEntry((float)(20))
+            {
+
+                Color=SKColor.Parse("#3498db")
+            },
+               new ChartEntry((float)(allCalories))
+            {
+                Color=SKColor.Parse("#F20C0C"),
+
+            } };
+                return entries;
+            }
+
         }
         public async Task<Person> PersonGet()
         {
@@ -115,6 +151,7 @@ namespace proje_1_diet
                      Goal=item.Object.Goal,
                  }).ToList()[0];
         }
+      
         public ChartEntry[] chartentry ()
         {
             ChartEntry[] entries = new[]
@@ -130,10 +167,10 @@ namespace proje_1_diet
 
                 Color=SKColor.Parse("#3498db")
             },
-               new ChartEntry((float)(20))
+               new ChartEntry((float)(allCalories))
             {
                 Color=SKColor.Parse("#F20C0C"),
-
+                
             } };
             return entries;
         }
@@ -177,7 +214,7 @@ namespace proje_1_diet
         }
         Root mealList;
         public static string meal;
-        public static int sum;
+        public static double sum;
        
 
         private void AddMealFonk(object sender, EventArgs e)
@@ -202,20 +239,22 @@ namespace proje_1_diet
         {
             try
             {
-                sum = Convert.ToInt32(sumInfo.Text);
+                sum = Convert.ToDouble(sumInfo.Text);
                 meal = mealInfo.Text;
                 //mealInfo.Text = meal;
                 //sumInfo.Text = Convert.ToString(sum);
                 var result = await ApiCaller.Get("https://api.calorieninjas.com/v1/nutrition");
 
                 mealList = JsonConvert.DeserializeObject<Root>(result.Response);
-
-
+                double oran = sum / 100;
+                double fat = Convert.ToDouble(mealList.items[0].fat_total_g)/10*oran;
+                double protein = Convert.ToDouble(mealList.items[0].protein_g) / 10 * oran;
+                double calories = Convert.ToDouble(mealList.items[0].calories) / 10 * oran;
                 meal brek = new proje_1_diet.meal();
                 brek.name = mealList.items[0].name;
-                brek.fat = mealList.items[0].fat_total_g;
-                brek.protein = mealList.items[0].protein_g;
-                brek.calories = mealList.items[0].calories;
+                brek.fat = fat.ToString();
+                brek.protein = protein.ToString();
+                brek.calories = calories.ToString();
                 if (isBreakfast == true) { breakfastList = change(breakfastList, brek); isBreakfast = false; person.Breakfast = breakfastList; }
                 else if (isLunch == true) { lunchList = change(lunchList, brek); isLunch = false; person.lunch = lunchList; }
                 else if (isDinner == true) { dinnerList = change(dinnerList, brek); isDinner = false; person.dinner = dinnerList; }
@@ -234,7 +273,7 @@ namespace proje_1_diet
             }
             catch
             {
-                await DisplayAlert("warning", "please write meal in entry", "ok");
+                await DisplayAlert("warning", "someting wrong", "ok");
             }
 
 
@@ -244,10 +283,10 @@ namespace proje_1_diet
         {
             if (myList == null) { myList = new List<meal> { }; }
             myList.Add(brek);
-
+            double oran = sum / 100;
             for (int i = 0; i < myList.Count; i++)
             {
-                allCalories += Convert.ToDouble(mealList.items[0].calories);
+                allCalories += Convert.ToDouble(mealList.items[0].calories)/10*oran;
             }
             person.Calories[currentTime - 1] = Convert.ToString(allCalories);
             return myList;
@@ -279,35 +318,47 @@ namespace proje_1_diet
 
         private void breakfast_Tapped(object sender, EventArgs e)
         {
-            isLunch = false;
-            isDinner= false;
-            isSnack = false;
             if(isBreakfast) { breakfast_IsClicked.TextColor = Color.DeepPink; isBreakfast = false; }
-            else { breakfast_IsClicked.TextColor = Color.Aqua; isBreakfast = true; }
+            else 
+            {
+                breakfast_IsClicked.TextColor = Color.Aqua; isBreakfast = true;
+                lunch_IsClicked.TextColor = Color.DeepPink; isLunch = false;
+                dinner_IsClicked.TextColor = Color.DeepPink; isDinner = false;
+                snack_IsClicked.TextColor = Color.DeepPink; isSnack = false;
+            }
         }
         private void lunch_Tapped(object sender, EventArgs e)
         {
-            isBreakfast = false;
             if (isLunch) { lunch_IsClicked.TextColor = Color.DeepPink; isLunch = false; }
-            else { lunch_IsClicked.TextColor = Color.Aqua; isLunch = true; }
-            isDinner = false;
-            isSnack = false;
+            else 
+            {
+                breakfast_IsClicked.TextColor = Color.DeepPink; isBreakfast = false;
+                lunch_IsClicked.TextColor = Color.Aqua; isLunch = true;
+                dinner_IsClicked.TextColor = Color.DeepPink; isDinner = false;
+                snack_IsClicked.TextColor = Color.DeepPink; isSnack = false;
+            }
         }
         private void dinner_Tapped(object sender, EventArgs e)
         {
-            isBreakfast = false;
-            isLunch = false;
             if(isDinner) { dinner_IsClicked.TextColor = Color.DeepPink; isDinner = false; }
-            else { dinner_IsClicked.TextColor = Color.Aqua; isDinner = true; }
-            isSnack = false;
+            else 
+            {
+                breakfast_IsClicked.TextColor = Color.DeepPink; isBreakfast = false;
+                lunch_IsClicked.TextColor = Color.DeepPink; isLunch = false;
+                dinner_IsClicked.TextColor = Color.Aqua; isDinner = true;
+                snack_IsClicked.TextColor = Color.DeepPink; isSnack = false;
+            }
         }
         private void snack_Tapped(object sender, EventArgs e)
         {
-            isBreakfast = false;
-            isLunch = false;
-            isDinner = false;
             if (isSnack) { snack_IsClicked.TextColor = Color.DeepPink; isSnack = false; }
-            else { snack_IsClicked.TextColor = Color.Aqua; isSnack = true; }
+            else 
+            {
+                breakfast_IsClicked.TextColor = Color.DeepPink; isBreakfast = false;
+                lunch_IsClicked.TextColor = Color.DeepPink; isLunch = false;
+                dinner_IsClicked.TextColor = Color.DeepPink; isDinner = false;
+                snack_IsClicked.TextColor = Color.Aqua; isSnack = true;
+            }
         }
         private  void refresh_list(object sender, EventArgs e)
         {

@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="proje_1_diet.excersizePage">
+    
+        <StackLayout Padding="20" Spacing="30" Orientation="Vertical" BackgroundColor="LightBlue">
+            <Grid RowDefinitions="Auto,Auto,*" BackgroundColor="LightBlue" RowSpacing="2">
+                <StackLayout Orientation="Horizontal" Padding="7">
+                    <Frame x:Name="walkingframe" CornerRadius="20" >
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Tapwalk_Tapped"/>
+                        </Frame.GestureRecognizers>
+                        <Image Source="walking.png" WidthRequest="40"/>
+                    </Frame>
+                    <Frame x:Name="running" CornerRadius="20">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Tapruning_Tapped"/>
+                    </Frame.GestureRecognizers>
+                    <Image Source="runner.png" WidthRequest="40"/>
+                    </Frame>
+                    <Frame x:Name="swim" CornerRadius="20">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Tapswim_Tapped"/>
+                    </Frame.GestureRecognizers>
+                    <Image Source="swimming.png" WidthRequest="40"/>
+                    </Frame>
+                    <Frame x:Name="soccer" CornerRadius="20">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Tapsoccer_Tapped"/>
+                    </Frame.GestureRecognizers>
+                    <Image Source="soccer.png" WidthRequest="40"/>
+                    </Frame>
+                </StackLayout>
+                <StackLayout Grid.Row="2" Orientation="Horizontal" Padding="7">
+                    <Frame x:Name="boxing" CornerRadius="20">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Tapboxing_Tapped"/>
+                    </Frame.GestureRecognizers>
+                    <Image Source="boxing.png" WidthRequest="40"/>
+                    </Frame>
+                    <Frame x:Name="rope" CornerRadius="20">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Taprope_Tapped"/>
+                    </Frame.GestureRecognizers>
+                    <Image Source="rope.png" WidthRequest="40"/>
+                    </Frame>
+                    <Frame x:Name="cyclist" CornerRadius="20">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Tapcyclist_Tapped"/>
+                    </Frame.GestureRecognizers>
+                    <Image Source="cyclist.png" WidthRequest="40"/>
+                    </Frame>
+                    <Frame x:Name="dance" CornerRadius="20">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Tapdance_Tapped"/>
+                    </Frame.GestureRecognizers>
+                    <Image Source="dance.png" WidthRequest="40"/>
+                    </Frame>
+                </StackLayout>
+            </Grid>
+
+
+            <StackLayout Orientation="Vertical" Spacing="50">
+                <StackLayout Orientation="Horizontal" >
+                    <StackLayout Orientation="Horizontal">
+                        <Frame CornerRadius="20" HasShadow="True">
+                            <Image Source="clock.png" WidthRequest="20"/>
+                        </Frame>
+                        <Label Text="minute:" FontSize="18" TextColor="Black" HorizontalOptions="Start" VerticalOptions="Center" HeightRequest="20"/>
+                        <Entry x:Name="time" VerticalOptions="Center" Margin="0,8,0,0" WidthRequest="50" Placeholder="30" PlaceholderColor="Gray" Keyboard="Numeric" MaxLength="12" TextColor="Black" />
+                    </StackLayout>
+                    
+                </StackLayout>
+                
+                <StackLayout Orientation="Vertical" Spacing="40">
+                    <Frame CornerRadius="20" HasShadow="True"  VerticalOptions="CenterAndExpand">
+                        <Image x:Name="animation" IsAnimationPlaying="True" WidthRequest="200"/>
+                     
+                    </Frame>
+                <Button Grid.Row="2"
+                    x:Name="buton"
+                    
+                VerticalOptions="Center"
+                Text="save"
+                TextColor="ForestGreen"
+                BackgroundColor="Transparent"
+                BorderColor="ForestGreen"
+                BorderWidth="1.5"
+                CornerRadius="50"
+                Clicked="buton_Clicked"
+                ></Button>
+            </StackLayout>
+
+            </StackLayout>
+            
+        </StackLayout>
+ 
+</ContentPage>

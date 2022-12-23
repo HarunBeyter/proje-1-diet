@@ -34,6 +34,7 @@ namespace proje_1_diet
         protected async override void OnAppearing()
         {
             
+
             person = await PersonGet();
             currentTime = DateTime.Now.Day;
             day = DateTime.Now;
@@ -76,6 +77,7 @@ namespace proje_1_diet
                      Job = item.Object.Job,
                      Adress = item.Object.Adress,
                      timeInfo = item.Object.timeInfo,
+                     Goal = item.Object.Goal,
                  }).ToList()[0];
         }
 

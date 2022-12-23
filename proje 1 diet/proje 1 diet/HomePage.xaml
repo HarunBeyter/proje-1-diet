@@ -191,7 +191,7 @@
                            WidthRequest="200" Placeholder="#egg" />
                     </StackLayout>
                     <StackLayout Orientation="Horizontal">
-                        <Label Text="Sum: " TextColor="Black" HorizontalOptions="Start" Margin="0,15,0,0" FontSize="18"/>
+                        <Label Text="gram: " TextColor="Black" HorizontalOptions="Start" Margin="0,15,0,0" FontSize="18"/>
                         <Entry x:Name="sumInfo" PlaceholderColor="Black" HorizontalOptions="Center" TextColor="Black" BackgroundColor="#e0e0e0" 
                            WidthRequest="200" Placeholder="#2"/>
                     </StackLayout>

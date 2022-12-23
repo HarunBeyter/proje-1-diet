@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="proje_1_diet.profilePage"
              xmlns:CI="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin">
-    <StackLayout BackgroundColor="White">
-        <ScrollView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="White">
+    <StackLayout BackgroundColor="LightBlue">
+        <ScrollView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="LightBlue">
             <Grid VerticalOptions="FillAndExpand">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -115,8 +115,8 @@
                     </StackLayout>
                     <StackLayout Orientation="Horizontal">
                         <Label Text="Goal:      " TextColor="Black" HorizontalOptions="Start" Margin="0,15,0,0" FontSize="18"/>
-                        <Entry x:Name="goalInfo" PlaceholderColor="Black" HorizontalOptions="Center" TextColor="Black" BackgroundColor="#e0e0e0" 
-                           WidthRequest="200" Placeholder="178"/>
+                        <Editor x:Name="goalInfo" PlaceholderColor="Black" HorizontalOptions="Center" TextColor="Black" BackgroundColor="#e0e0e0" 
+                            HeightRequest="200" Placeholder="178"/>
                     </StackLayout>
                     <Button  VerticalOptions="Center"
                              Text="save"

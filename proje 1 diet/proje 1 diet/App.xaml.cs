@@ -20,6 +20,7 @@ namespace proje_1_diet
 
         protected override void OnStart()
         {
+
         }
 
         protected override void OnSleep()
@@ -28,6 +29,7 @@ namespace proje_1_diet
 
         protected override void OnResume()
         {
+
         }
     }
 }
