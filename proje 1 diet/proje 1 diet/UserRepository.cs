@@ -8,7 +8,7 @@ namespace proje_1_diet
 {
     public class UserRepository
     {
-        string webAPIKey = "AIzaSyD8uBZu4vBAUW7zSmemW3z3g39B9F_wYXI";
+        string webAPIKey = "AIzaSyCxiQlWpKFCiitJOXoo6dRBhw9y5Z7cw-E";
         FirebaseAuthProvider authProvider;
 
         public UserRepository()

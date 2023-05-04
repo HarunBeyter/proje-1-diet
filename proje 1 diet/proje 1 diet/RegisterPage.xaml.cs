@@ -46,6 +46,7 @@ namespace proje_1_diet
                 person.Water = Enumerable.Repeat("0", 31).ToArray();
                 person.Excersize = Enumerable.Repeat("0", 31).ToArray();
                 person.timeInfo = DateTime.Now.Day.ToString();
+                person.monthInfo = DateTime.Now.Month.ToString();
                 person.Name = name;
                 person.Id = name+surName+password;
                 person.SurName = surName;

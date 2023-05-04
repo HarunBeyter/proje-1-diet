@@ -25,12 +25,13 @@ namespace proje_1_diet
     public partial class HomePage : ContentPage
     {
         PersonRepository personRepository = new PersonRepository();
-        FirebaseClient firebase = new FirebaseClient("https://dietdatabase-b0f8f-default-rtdb.europe-west1.firebasedatabase.app/");
+        FirebaseClient firebase = new FirebaseClient("https://diet-data-23870-default-rtdb.europe-west1.firebasedatabase.app/");
         static string mail;
         static Person person;
-        static int currentTime;
+        static DateTime currentTime;
         static int waterınfo;
         static int time;
+        static int ay;
         static bool isBreakfast=false;
         static bool isLunch;
         static bool isDinner;
@@ -60,10 +61,11 @@ namespace proje_1_diet
         protected async override void OnAppearing()
         {
             person = await PersonGet();
-            currentTime = DateTime.Now.Day;
+            currentTime = DateTime.Now;
             time = Convert.ToInt32(person.timeInfo);
-            waterınfo = Convert.ToInt32(person.Water[currentTime - 1]);
-            breakfast.Text = (person.Calories[currentTime - 1]);
+            ay= Convert.ToInt32(person.monthInfo);
+            waterınfo = Convert.ToInt32(person.Water[currentTime.Day - 1]);
+            breakfast.Text = (person.Calories[currentTime.Day - 1]);
             breakfastList = person.Breakfast;
             lunchList = person.lunch;
             dinnerList = person.dinner;
@@ -72,12 +74,24 @@ namespace proje_1_diet
             if(lunchList == null) { lunchList = new List<meal>(); } 
             if(snackList == null) { snackList = new List<meal>(); }
             if(dinnerList == null) { dinnerList = new List<meal>(); }
-            if (currentTime != time) {
-                person.timeInfo = Convert.ToString(currentTime);
+            if (currentTime.Day != time) {
+                person.timeInfo = Convert.ToString(currentTime.Day);
                 breakfastList.Clear(); 
                 lunchList.Clear(); 
                 dinnerList.Clear(); 
                 snackList.Clear(); }
+            if (currentTime.Month != ay)
+            {
+                string[] reset = new string[31];
+                for (int i = 0; i < reset.Length; i++)
+                {
+                    reset[i] = "0";
+                }
+                person.monthInfo = Convert.ToString(currentTime.Month);
+                person.Calories = reset;
+                person.Water = reset;
+                person.Excersize = reset;
+            }
             BreakfastListInfo.ItemsSource = breakfastList;
             LunchListInfo.ItemsSource = lunchList;
             DinnerListInfo.ItemsSource = dinnerList;
@@ -149,6 +163,7 @@ namespace proje_1_diet
                      Adress = item.Object.Adress,
                      timeInfo = item.Object.timeInfo,
                      Goal=item.Object.Goal,
+                     monthInfo = item.Object.monthInfo,
                  }).ToList()[0];
         }
       
@@ -281,14 +296,12 @@ namespace proje_1_diet
 
         public List<meal> change(List<meal> myList,meal brek)
         {
+            allCalories = Convert.ToDouble(person.Calories[currentTime.Day - 1]);
             if (myList == null) { myList = new List<meal> { }; }
             myList.Add(brek);
             double oran = sum / 100;
-            for (int i = 0; i < myList.Count; i++)
-            {
-                allCalories += Convert.ToDouble(mealList.items[0].calories)/10*oran;
-            }
-            person.Calories[currentTime - 1] = Convert.ToString(allCalories);
+            allCalories += Convert.ToDouble(mealList.items[0].calories)/10*oran;
+            person.Calories[currentTime.Day - 1] = Convert.ToString(allCalories);
             return myList;
         }
         public class ApiResponse

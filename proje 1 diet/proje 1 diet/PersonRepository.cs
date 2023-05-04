@@ -10,7 +10,7 @@ namespace proje_1_diet
 {
     public class PersonRepository
     {
-        FirebaseClient firebaseClient = new FirebaseClient("https://dietdatabase-b0f8f-default-rtdb.europe-west1.firebasedatabase.app/");
+        FirebaseClient firebaseClient = new FirebaseClient("https://diet-data-23870-default-rtdb.europe-west1.firebasedatabase.app/");
 
         public async Task<bool> Save(Person person)
         {

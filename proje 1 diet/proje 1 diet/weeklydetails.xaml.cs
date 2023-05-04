@@ -17,7 +17,7 @@ namespace proje_1_diet
     {
         static ObservableCollection<Weekly> WeeklyInfo;
         PersonRepository personRepository = new PersonRepository();
-        FirebaseClient firebase = new FirebaseClient("https://dietdatabase-b0f8f-default-rtdb.europe-west1.firebasedatabase.app/");
+        FirebaseClient firebase = new FirebaseClient("https://diet-data-23870-default-rtdb.europe-west1.firebasedatabase.app/");
         static string mail;
         static Person person;
         static int currentTime;
@@ -40,6 +40,7 @@ namespace proje_1_diet
             day = DateTime.Now;
             WeeklyInfo = new ObservableCollection<Weekly>
             {
+
                 new Weekly{ Date = day.DayOfWeek.ToString(),Value=person.Calories[day.Day-1],Icon="yemek.png",sym="cal" },
                 new Weekly{ Date = day.AddDays(-1).DayOfWeek.ToString(),Value=person.Calories[day.Day-2],Icon="yemek.png" , sym = "cal"},
                 new Weekly{ Date = day.AddDays(-2).DayOfWeek.ToString(),Value=person.Calories[day.Day-3] ,Icon="yemek.png" , sym = "cal"},
@@ -78,6 +79,7 @@ namespace proje_1_diet
                      Adress = item.Object.Adress,
                      timeInfo = item.Object.timeInfo,
                      Goal = item.Object.Goal,
+                     monthInfo = item.Object.monthInfo,
                  }).ToList()[0];
         }
 

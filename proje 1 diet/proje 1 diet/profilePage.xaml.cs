@@ -14,7 +14,7 @@ namespace proje_1_diet
     public partial class profilePage : ContentPage
     {
         PersonRepository personRepository = new PersonRepository();
-        FirebaseClient firebase = new FirebaseClient("https://dietdatabase-b0f8f-default-rtdb.europe-west1.firebasedatabase.app/");
+        FirebaseClient firebase = new FirebaseClient("https://diet-data-23870-default-rtdb.europe-west1.firebasedatabase.app/");
         static string mail;
         static Person person;
         public profilePage()
@@ -59,6 +59,8 @@ namespace proje_1_diet
                      Job = item.Object.Job,
                      Adress = item.Object.Adress,
                      timeInfo = item.Object.timeInfo,
+                     Goal = item.Object.Goal,
+                     monthInfo = item.Object.monthInfo,
                  }).ToList()[0];
         }
 
